@@ -35,4 +35,8 @@ public class PraeferenzenController {
     public String showPraef(Praeferenzen praeferenzen) {
         return "praef";
     }
+    @GetMapping(path = "/Speisekarte")
+    public String getSpeisekarte(Praeferenzen praeferenzen) {
+        return "praef";
+    }
 }
