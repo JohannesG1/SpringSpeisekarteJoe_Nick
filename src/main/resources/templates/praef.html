@@ -10,9 +10,16 @@
 <div>
     <h2>Bitte geben Sie ihr Präferenzen an</h2>
     <div>
-        <form action="#" th:action="">
-            <input type="text" th:field="*{eingabe}" />
+        <form action="#" th:action="@{/praef/addPraef}" th:object="${praeferenzen}" method="post">
+            <input type="text" th:field="*{eingaben}" id="eingaben" placeholder="eingaben"/>
+            <span th:if="${#fields.hasErrors('eingaben')}" th:errors="*{eingaben}" class="text-danger"></span>
+            <input type="submit" class="btn btn-primary" value="Eingeben">
         </form>
+    </div>
+    <div>
+        <table>
+            <tr></tr>
+        </table>
     </div>
 </div>
 </body>

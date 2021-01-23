@@ -5,9 +5,13 @@ import SpringApplication.repositories.PraeferenzenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
 @Controller
 public class PraeferenzenController {
     private final PraeferenzenRepository praeferenzenRepository;
@@ -17,16 +21,18 @@ public class PraeferenzenController {
         this.praeferenzenRepository = PraeferenzenRepository;
     }
 
-    @GetMapping("/createPraef")
-    public String showCreateBookingForm(Praeferenzen praef) {
-        praeferenzenRepository.save(praef);
+    @PostMapping("/praef/addPraef")
+    public String addPraef(@Valid Praeferenzen praeferenzen, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "praef";
+        }
+        model.addAttribute("vorhanden", praeferenzenRepository.findAll());
+        praeferenzenRepository.save(praeferenzen);
         return "praef";
     }
 
     @GetMapping(path = "/praef")
-    public String getPraef(HttpServletRequest request, Model model) {
-
-        model.addAttribute("praeferenzen", praeferenzenRepository.findAll());
+    public String showPraef(Praeferenzen praeferenzen) {
         return "praef";
     }
 }

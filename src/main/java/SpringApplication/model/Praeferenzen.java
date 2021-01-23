@@ -1,15 +1,17 @@
 package SpringApplication.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Praeferenzen {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long praef_id;
 
-    public Praeferenzen(long praef_id, String eingaben) {
-        this.praef_id = praef_id;
+    public Praeferenzen(String eingaben) {
         this.eingaben = eingaben;
     }
 
