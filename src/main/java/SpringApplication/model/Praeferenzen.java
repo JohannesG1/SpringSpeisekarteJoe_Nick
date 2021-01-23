@@ -23,7 +23,7 @@ public class Praeferenzen {
     }
 
     public void setEingaben(String eingaben) {
-        this.eingaben += eingaben + ",";
+        this.eingaben = eingaben;
     }
 
     String eingaben = "";

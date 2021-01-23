@@ -26,7 +26,7 @@ public class PraeferenzenController {
         if (result.hasErrors()) {
             return "praef";
         }
-        model.addAttribute("vorhanden", praeferenzenRepository.findAll());
+        model.addAttribute("bisherigePraeferenzen", praeferenzenRepository.findAll());
         praeferenzenRepository.save(praeferenzen);
         return "praef";
     }
