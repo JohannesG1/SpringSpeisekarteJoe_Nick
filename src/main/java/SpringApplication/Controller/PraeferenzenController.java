@@ -37,6 +37,6 @@ public class PraeferenzenController {
     }
     @GetMapping(path = "/Speisekarte")
     public String getSpeisekarte(Praeferenzen praeferenzen) {
-        return "praef";
+        return "speisekarte";
     }
 }
