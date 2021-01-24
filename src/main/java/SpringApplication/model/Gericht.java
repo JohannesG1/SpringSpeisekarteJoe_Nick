@@ -11,10 +11,6 @@ public class Gericht {
     @Id
     private long gericht_id;
 
-    @ManyToMany
-    Set<Kategorie> zuordnungenKat;
-    @ManyToMany
-    Set<Praeferenzen> zuordnungPrae;
 
     private String name, beschreibung;
     private double preis;

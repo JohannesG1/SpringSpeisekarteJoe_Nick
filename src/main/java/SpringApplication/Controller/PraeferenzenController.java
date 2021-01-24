@@ -23,20 +23,16 @@ public class PraeferenzenController {
 
     @PostMapping("/praef/addPraef")
     public String addPraef(@Valid Praeferenzen praeferenzen, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "praef";
+        if (!result.hasErrors()) {
+            praeferenzenRepository.save(praeferenzen);
         }
         model.addAttribute("bisherigePraeferenzen", praeferenzenRepository.findAll());
-        praeferenzenRepository.save(praeferenzen);
         return "praef";
     }
 
     @GetMapping(path = "/praef")
-    public String showPraef(Praeferenzen praeferenzen) {
+    public String showPraef(Praeferenzen praeferenzen, Model model) {
+        model.addAttribute("bisherigePraeferenzen", praeferenzenRepository.findAll());
         return "praef";
-    }
-    @GetMapping(path = "/Speisekarte")
-    public String getSpeisekarte() {
-        return "speisekarte";
     }
 }

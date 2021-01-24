@@ -1,7 +1,5 @@
 package SpringApplication;
 
-import SpringApplication.Controller.SpeisekartenKategorienController;
-import SpringApplication.model.Kategorie;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.SpringApplication;
 @SpringBootApplication
