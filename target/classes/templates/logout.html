@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+<div class="loginbox">
+    <h1>Login</h1>
+    <form action="/login" method="get">
+        <input type="text" name = "name" required="required" placeholder="Username">
+        <input type="password" name = "password" required="required" placeholder="Passwort">
+        <div th:if="${param.success}" class="success-msg">Erfolgreich registriert</div>
+        <div th:if="${param.unsuccess}" class="alert-msg">Ungültige Username oder Passwort</div>
+        <button type="submit" class="login">Anmelden</button>
+        <br><a class="a1" href="nologin">Ohne Anmeldung fortfahren</a><br>
+        <p class="p1">Not a member?</p>
+        <a class="a1" href="register">Register</a>
+    </form>
+</div>
+</body>
+</html>

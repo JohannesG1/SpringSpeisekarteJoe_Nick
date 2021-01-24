@@ -27,21 +27,7 @@
         </ul>
     </div>
 </nav>
-
 <body>
-<h2>Unsere Speisen</h2>
-<table class="table table-striped table-responsive-md">
-    <thead>
-    <tr>
-        <th>Speisen</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr style="background-color: aquamarine" th:each="gericht : ${gerichte}">
-        <td  th:text="${gericht.getName()}"></td>
-        <td  th:text="${gericht.getPreis()}"></td>
-    </tr>
-    </tbody>
-</table>
+
 </body>
 </html>

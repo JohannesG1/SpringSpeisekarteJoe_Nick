@@ -1,0 +1,135 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: url(../images/backgroundimg.jpg);
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.loginbox {
+    width: 400px;
+    height: 400px;
+    margin:auto;
+    border: 2px solid grey;
+    border-radius: 20px;
+    background: white;
+    text-align:center;
+}
+
+h1 {
+    color: #007bff;
+}
+
+h2 {
+    font-size:30px;
+}
+
+h3 {
+    color: gray;
+    font-size:20px;
+}
+
+input {
+    width: 200px;
+    height:50px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.loginbox p {
+    display:inline-block;
+}
+
+.registerbox {
+    width: 400px;
+    height: 600px;
+    margin:auto;
+    background:white;
+    border: 2px solid grey;
+    border-radius: 20px;
+    text-align:center;
+}
+
+.registerbox input {
+    width: 60%;
+    height:50px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+button {
+    font-size:20px;
+    color:white;
+    width: 200px;
+    height:40px;
+    border:none;
+    background-color: #007bff;
+    border-radius: 10px;
+    margin-top: 30px;
+    margin-bottom:10px;
+}
+
+.button2 {
+    font-size:20px;
+    color:white;
+    width: 200px;
+    height:40px;
+    border:none;
+    background-color: #007bff;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom:10px;
+}
+
+.informationbox {
+    width: 400px;
+    height: 300px;
+    margin:auto;
+    border: 2px solid grey;
+    border-radius: 20px;
+    background: white;
+    text-align: left;
+    line-height: 2px;
+}
+
+.food-box {
+    width: 70%;
+    height: 100%;
+    border: 2px solid grey;
+    border-radius: 20px;
+    background: white;
+}
+
+.pay-box {
+    width: 400px;
+    height: 100%;
+    margin:auto;
+    border: 2px solid grey;
+    border-radius: 20px;
+    background: white;
+    text-align: center;
+    line-height: 2px;
+}
+
+.alert-msg {
+    color:red;
+}
+
+.success-msg {
+    color:limegreen;
+}
+
+.fa-pizza-slice {
+    background-color: #007bff;
+}
+
+.navbar-default  {
+    background-color: #2196f3;
+
+}
+.navbar a{
+    color:black;
+}
