@@ -15,15 +15,5 @@ import java.util.stream.StreamSupport;
 
 @Controller
 public class GerichtController {
-    private final GerichtRepository gerichtRepository;
 
-    @Autowired
-    public GerichtController(GerichtRepository gerichtRepository) {
-        this.gerichtRepository = gerichtRepository;
-    }
-    @GetMapping(path = "/Speisekarte")
-    public String getSpeisekarte(Praeferenzen praeferenzen, Model model) {
-        model.addAttribute("gerichte", gerichtRepository.findAll());
-        return "speisekarte";
-    }
 }
