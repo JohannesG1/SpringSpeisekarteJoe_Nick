@@ -13,7 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 @Controller
@@ -44,19 +48,19 @@ public class PraeferenzenController {
 
     @GetMapping(path = "/praef")
     public String showPraef(Praeferenzen praeferenzen, Model model) {
-        model.addAttribute("bisherigePraeferenzen", praeferenzenRepository.findAll());
+        model.addAttribute("bisherigePraeferenzen", praeferenzenRepository.allPraeferenzen());
         return "praef";
     }
 
-    @GetMapping(path = "praef/Speisekarte")
+    @GetMapping(path = "/praef/Speisekarte")
     public String getSpeisekarte(Praeferenzen praeferenzen, Model model) {
-        // this.gerichtRepository.allGerichte().stream().fi
-//        if (gerichte.size() == 0) {
-//            model.addAttribute("gerichte", gerichtRepository.findAll());
-//        } else {
-//            model.addAttribute("gerichte", gerichte);
-//        }
-        model.addAttribute("gerichte", gerichtRepository.findAll());
+        this.gerichtRepository.allGerichte();
+        Collection<Gericht> items = gerichtRepository.allGerichte().stream().filter(gericht -> {
+            return praeferenzenRepository.allPraeferenzen()
+                    .stream()
+                    .anyMatch(preferenz -> gericht.getBeschreibung().contains(preferenz.getEingaben()));
+        }).collect(Collectors.toList());
+        model.addAttribute("gerichte", items);
         return "speisekarte";
     }
 }
