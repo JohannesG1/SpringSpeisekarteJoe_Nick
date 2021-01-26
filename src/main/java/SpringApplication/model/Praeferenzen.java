@@ -7,6 +7,14 @@ import javax.persistence.Id;
 
 @Entity
 public class Praeferenzen {
+    public long getPraef_id() {
+        return praef_id;
+    }
+
+    public void setPraef_id(long praef_id) {
+        this.praef_id = praef_id;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long praef_id;

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -39,14 +40,20 @@ public class PraeferenzenController {
         }
         model.addAttribute("vorschlaege", this.getvorschlaege(this.gerichtRepository.allGerichte()));
         model.addAttribute("bisherigePraeferenzen", praeferenzenRepository.findAll());
-        return "praef";
+        return "redirect:/praef";
+    }
+
+    @GetMapping(path = "praef/delete/{id}")
+    public String deleteGericht(@PathVariable("id") long id, Model model){
+        praeferenzenRepository.deleteById(id);
+        return "redirect:/praef";
     }
 
     @PostMapping("/praef/deletePraef")
     public String addPraef(BindingResult result, Model model) {
         praeferenzenRepository.deleteAll();
         model.addAttribute("bisherigePraeferenzen", praeferenzenRepository.findAll());
-        return "praef";
+        return "redirect:/praef";
     }
 
     @GetMapping(path = "/praef")
