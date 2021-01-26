@@ -5,7 +5,6 @@ import SpringApplication.model.Praeferenzen;
 import SpringApplication.repositories.GerichtRepository;
 import SpringApplication.repositories.PraeferenzenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,9 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 
 @Controller
@@ -49,6 +48,10 @@ public class PraeferenzenController {
     @GetMapping(path = "/praef")
     public String showPraef(Praeferenzen praeferenzen, Model model) {
         model.addAttribute("bisherigePraeferenzen", praeferenzenRepository.allPraeferenzen());
+        List<String> vorschlaege = new LinkedList<String>();
+//        gerichtRepository.allGerichte().stream().map(
+//                element -> Arrays.asList(element.getBeschreibung().split(", ")).stream().map(vorschlaege::add));
+        model.addAttribute("vorschlag", vorschlaege);
         return "praef";
     }
 
