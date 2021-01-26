@@ -19,7 +19,7 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item"><a class="nav-link" href="praef">Pr&aumlferenzen</a></li>
             <li class="nav-item"><a class="nav-link" href="kategorien">Kategorien</a></li>
-            <li class="nav-item"><a class="nav-link" href="Speisekarte">Speisekarte</a></li>
+            <li class="nav-item"><a class="nav-link" href="/praef/Speisekarte">Speisekarte</a></li>
         </ul>
         <ul class="navbar-nav">
             <li class="nav-item"><a class="nav-link" href="logout"><i class="fa fa-sign-out" style="font-size:24px"></i></a></li>
@@ -39,7 +39,18 @@
                 <input type="submit" class="btn btn-primary" value="Eingeben">
             </form>
         </div>
-        <a th:href="Speisekarte">zur Speisekarte</a>
+        <a href="/praef/Speisekarte">zur Speisekarte</a> <table class="table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>vorschläge</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr style="background-color: aquamarine" th:each="vorschlag : ${vorschlaege}">
+            <td  th:text="${vorschlag}"></td>
+        </tr>
+        </tbody>
+    </table>
     </div>
     <div style="float: right">
         <table class="table table-striped table-responsive-md">

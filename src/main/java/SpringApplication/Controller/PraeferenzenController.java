@@ -15,7 +15,6 @@ import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 
@@ -33,11 +32,16 @@ public class PraeferenzenController {
     @PostMapping("/praef/addPraef")
     public String addPraef(@Valid Praeferenzen praeferenzen, BindingResult result, Model model) {
         if (!result.hasErrors()) {
+            if (praeferenzenRepository.allPraeferenzen().stream().noneMatch(
+                    elem -> elem.getEingaben().equals(praeferenzen.getEingaben()))
+            )
             praeferenzenRepository.save(praeferenzen);
         }
+        model.addAttribute("vorschlaege", this.getvorschlaege(this.gerichtRepository.allGerichte()));
         model.addAttribute("bisherigePraeferenzen", praeferenzenRepository.findAll());
         return "praef";
     }
+
     @PostMapping("/praef/deletePraef")
     public String addPraef(BindingResult result, Model model) {
         praeferenzenRepository.deleteAll();
@@ -48,15 +52,16 @@ public class PraeferenzenController {
     @GetMapping(path = "/praef")
     public String showPraef(Praeferenzen praeferenzen, Model model) {
         model.addAttribute("bisherigePraeferenzen", praeferenzenRepository.allPraeferenzen());
-        List<String> vorschlaege = new LinkedList<String>();
-//        gerichtRepository.allGerichte().stream().map(
-//                element -> Arrays.asList(element.getBeschreibung().split(", ")).stream().map(vorschlaege::add));
-        model.addAttribute("vorschlag", vorschlaege);
+        model.addAttribute("vorschlaege", this.getvorschlaege(this.gerichtRepository.allGerichte()));
         return "praef";
     }
 
     @GetMapping(path = "/praef/Speisekarte")
     public String getSpeisekarte(Praeferenzen praeferenzen, Model model) {
+        if (praeferenzenRepository.allPraeferenzen().size() == 0) {
+            model.addAttribute("gerichte", gerichtRepository.allGerichte());
+            return "speisekarte";
+        }
         this.gerichtRepository.allGerichte();
         Collection<Gericht> items = gerichtRepository.allGerichte().stream().filter(gericht -> {
             return praeferenzenRepository.allPraeferenzen()
@@ -65,5 +70,18 @@ public class PraeferenzenController {
         }).collect(Collectors.toList());
         model.addAttribute("gerichte", items);
         return "speisekarte";
+    }
+
+    Collection<String> getvorschlaege (Collection<Gericht> gerichtCollection) {
+        Collection<String> vorschlaege = new LinkedList<>();
+        gerichtRepository.allGerichte().forEach(
+                element -> Arrays.asList(element.getBeschreibung().split(", ")).forEach(
+                        praef -> {
+                            if (!vorschlaege.contains(praef)) {
+                                vorschlaege.add(praef);
+                            }
+                        }
+                ));
+        return vorschlaege;
     }
 }
