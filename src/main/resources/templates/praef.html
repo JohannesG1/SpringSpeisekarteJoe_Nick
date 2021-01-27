@@ -28,47 +28,51 @@
 </nav>
 
 <body>
-<div>
-    <div style="float: left; width: 60%">
-        <h2>Bitte geben Sie ihr Präferenzen an</h2>
-        <div>
-            <form action="#" th:action="@{/praef/addPraef}" th:object="${praeferenzen}" method="post">
-                <input type="text" th:field="*{eingaben}" id="eingaben" placeholder="eingaben"  onfocus="this.value=''"/>
-                <span th:if="${#fields.hasErrors('eingaben')}" th:errors="*{eingaben}" class="text-danger"></span>
-                <input type="submit" class="btn btn-primary" value="Eingeben">
-            </form>
-        </div>
-        <a href="/praef/Speisekarte">zur Speisekarte</a> <table class="table table-striped table-responsive-md">
+<div style="float: right" >
+    <table class="table table-striped table-responsive-md">
         <thead>
         <tr>
-            <th>vorschläge</th>
+            <th>Präferenzen</th><th>Entfernen</th>
         </tr>
         </thead>
         <tbody>
-        <tr style="background-color: aquamarine" th:each="vorschlag : ${vorschlaege}">
+        <tr style="background-color: #cab3ff" th:each="praef : ${bisherigePraeferenzen}">
+            <td  th:text="${praef.getEingaben()}"></td>
+            <td style="background-color: #9c6cff">
+                <a style = "background-color: #dccdff; border-color: #9c6cff" th:href="@{/praef/delete/{id}(id=${praef.getPraef_id()})}" class="btn btn-primary">
+                    <i  class="fas fa-trash ml-2"></i>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <div style="text-align: center; width: auto">
+        <h2>Bitte geben Sie ihre Präferenzen an</h2>
+        <div style="text-align: center">
+            <form action="#" th:action="@{/praef/addPraef}" th:object="${praeferenzen}" method="post">
+                <input type="text" th:field="*{eingaben}" id="eingaben" placeholder="Präferenzen eingeben"  onfocus="this.value=''"/>
+                <span th:if="${#fields.hasErrors('eingaben')}" th:errors="*{eingaben}" class="text-danger"></span>
+                <input type="submit" class="btn btn-primary" value="Eingeben">
+            </form>
+
+        </div>
+        <div style="width: 1700px">
+        <a href="/praef/Speisekarte">Speisekarte ansehen</a>
+        </div>
+        <table style="width: 1700px" class="table table-striped table-responsive-md">
+        <thead style="text-align: center">
+        <tr>
+            <th>mögliche Präferenzen: </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr style="background-color: #cab3ff" th:each="vorschlag : ${vorschlaege}">
             <td  th:text="${vorschlag}"></td>
         </tr>
         </tbody>
     </table>
-    </div>
-    <div style="float: right">
-        <table class="table table-striped table-responsive-md">
-            <thead>
-            <tr>
-                <th>Eingaben</th><th>löschen</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr style="background-color: aquamarine" th:each="praef : ${bisherigePraeferenzen}">
-                <td  th:text="${praef.getEingaben()}"></td>
-                <td>
-                    <a th:href="@{/praef/delete/{id}(id=${praef.getPraef_id()})}" class="btn btn-primary">
-                        <i class="fas fa-trash ml-2"></i>
-                    </a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
     </div>
 </div>
 </body>
