@@ -18,7 +18,6 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.stream.Collectors;
 
-
 @Controller
 public class PraeferenzenController {
     private final PraeferenzenRepository praeferenzenRepository;
@@ -28,6 +27,10 @@ public class PraeferenzenController {
     public PraeferenzenController(PraeferenzenRepository PraeferenzenRepository, GerichtRepository gerichtRepository) {
         this.praeferenzenRepository = PraeferenzenRepository;
         this.gerichtRepository = gerichtRepository;
+    }
+    @GetMapping(path = "/")
+    public String getStart() {
+        return "index";
     }
 
     @PostMapping("/praef/addPraef")
